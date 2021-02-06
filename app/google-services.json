@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "178876312115",
+    "project_id": "femmehacks2021",
+    "storage_bucket": "femmehacks2021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178876312115:android:f2584a25e578f31f705146",
+        "android_client_info": {
+          "package_name": "femme.hacks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178876312115-makdpt280dviuugeupc75j9e4l3dl5gj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0HQLHylqoTixbEnBtv8zfzGCHhQKBQ_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "178876312115-makdpt280dviuugeupc75j9e4l3dl5gj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
