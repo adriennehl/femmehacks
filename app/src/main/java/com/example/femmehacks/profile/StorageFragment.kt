@@ -40,7 +40,7 @@ class StorageFragment(val db: FirebaseFirestore) {
         val db = Firebase.firestore
     }
 
-    fun addUser(name: String, email: String, subjects: Array<String>, role: String) {
+    fun addUser(name: String, email: String, subjects: List<String>, role: String) {
         val users = db.collection("users");
         val user = hashMapOf(
             "name" to name,
