@@ -45,7 +45,7 @@ class StorageFragment(val db: FirebaseFirestore) {
         val anna = hashMapOf(
             "name" to "Anna Bai",
             "email" to "annabai@gmail.com",
-            "subjects" to arrayOf("Computer Science, Chinese"),
+            "subjects" to arrayOf("Computer Science", "Chinese"),
             "bio" to "I go to Rice University!"
         )
         users.add(anna);
@@ -53,7 +53,7 @@ class StorageFragment(val db: FirebaseFirestore) {
         val janet = hashMapOf(
             "name" to "Janet Lu",
             "email" to "janetlu@gmail.com",
-            "subjects" to arrayOf("Computer Science, Electrical Engineering"),
+            "subjects" to arrayOf("Computer Science", "Electrical Engineering"),
             "bio" to "I go to Rice University!"
         )
         users.add(janet);
@@ -62,6 +62,6 @@ class StorageFragment(val db: FirebaseFirestore) {
     private fun getCompSciUsers() {
         val users = db.collection("users");
 
-        users.whereArrayContains("subjects, Computer Science");
+        users.whereArrayContains("subjects", "Computer Science");
     }
 }
