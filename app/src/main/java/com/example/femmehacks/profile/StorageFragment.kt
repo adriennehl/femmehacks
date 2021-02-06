@@ -34,44 +34,62 @@ import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
+const val USERS = "users";
+const val NAME = "name";
+const val EMAIL = "email";
+const val ROLE = "role";
+const val SUBJECTS = "subjects";
+var matchingUsers = mutableListOf<User>();
+
+class User constructor(name_input: String, email_input: String, role_input: String,
+                       subject_input: List<String>) {
+    var name = name_input;
+    var email = email_input;
+    var role = role_input;
+    var subjects = subject_input;
+
+    override fun toString(): String {
+        val string = "Name: $name\nEmail: $email\nRole: $role\nSubjects: $subjects\n";
+        return string;
+    }
+}
+
 class StorageFragment(val db: FirebaseFirestore) {
 
     fun setup() {
         val db = Firebase.firestore
     }
 
+    /*
+    Adds a user with the specified fields to the Firestore.
+     */
     fun addUser(name: String, email: String, subjects: Array<String>, role: String) {
-        val users = db.collection("users");
+        val users = db.collection(USERS);
         val user = hashMapOf(
-            "name" to name,
-            "email" to email,
-            "subjects" to subjects,
-            "role" to role
+            NAME to name,
+            EMAIL to email,
+            SUBJECTS to subjects,
+            ROLE to role
         )
         users.add(user);
     }
 
-    fun getUsersOfSubject(subject: String): List<String> {
-        // Get users with matching subject.
-        Log.d("TAG", subject)
-        val users = db.collection("users");
-        val query = users.whereArrayContains("subjects", subject);
-        val snapshot = query.get().addOnSuccessListener { documents ->
-            // Add users' names into a list and return.
-            val userNames = mutableListOf<String>();
+    /*
+    Adds the users with the matching role and any matching subjects to the list matchingUsers.
+     */
+    fun getMatchingUsers(role: String, subjects: List<String>) {
+        val users = db.collection(USERS);
+        //  Query the users with the matching role and any of the matching subjects.
+        val query = users.whereEqualTo(ROLE, role).whereArrayContainsAny(SUBJECTS, subjects);
+        query.get().addOnSuccessListener { documents ->
+            // Add each matching user to the list of matching users as a User object.
             for (document in documents) {
-                userNames.add(document.get("name") as String);
+                val user = User(document.get(NAME) as String, document.get(EMAIL) as String,
+                    document.get(ROLE) as String, document.get(SUBJECTS) as List<String>);
+                matchingUsers.add(user);
             }
-            Log.d("Tag", userNames.toString())
-        }
-            .addOnFailureListener { exception ->
-                Log.d("TAG", "Error getting documents: ", exception)
-            };
-        return emptyList()
-    }
-
-    fun getUsersOfRole(role: String): Query {
-        val users = db.collection("users");
-        return users.whereEqualTo("role", role);
+        }.addOnFailureListener { exception ->
+            Log.d("TAG", "Error getting documents: ", exception)
+        };
     }
 }
