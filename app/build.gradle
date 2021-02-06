@@ -38,7 +38,7 @@ android {
 
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+//apply plugin: 'com.google.gms.google-services'  // Google Services plugin
 
 dependencies {
     def fragment_version = "1.2.5"
