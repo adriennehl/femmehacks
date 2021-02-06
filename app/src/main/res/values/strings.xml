@@ -8,6 +8,15 @@
 
     <string name="subjects">Subjects</string>
     <string name="subject">Subject</string>
-    <string name="bio">Bio</string>
+    <string name="lookingfor">I am looking for a...</string>
     <string name="save">Save</string>
+    <string name="cs">CS</string>
+    <string name="spanish">Spanish</string>
+    <string name="history">History</string>
+    <string name="math">Math</string>
+    <string-array name="relationship_array">
+        <item>Mentor</item>
+        <item>Mentee</item>
+        <item>Study Buddy</item>
+    </string-array>
 </resources>
