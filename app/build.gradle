@@ -3,6 +3,10 @@ plugins {
     id 'kotlin-android'
 }
 
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -36,10 +40,6 @@ android {
     }
 }
 
-apply plugin: 'kotlin-kapt'
-apply plugin: 'com.android.application'
-//apply plugin: 'com.google.gms.google-services'  // Google Services plugin
-
 dependencies {
     def fragment_version = "1.2.5"
 
@@ -64,7 +64,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    // Import the Firebase BoM
+    // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:26.4.0')
 
     // When using the BoM, you don't specify versions in Firebase library dependencies
