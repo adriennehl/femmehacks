@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.MetadataChanges
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.ServerTimestamp
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.Source
@@ -35,33 +36,40 @@ import java.util.concurrent.TimeUnit
 
 class StorageFragment(val db: FirebaseFirestore) {
 
-    private fun setup() {
+    fun setup() {
         val db = Firebase.firestore
     }
 
-    private fun addUsers() {
+    fun addUser(name: String, email: String, subjects: Array<String>, role: String) {
         val users = db.collection("users");
-
-        val anna = hashMapOf(
-            "name" to "Anna Bai",
-            "email" to "annabai@gmail.com",
-            "subjects" to arrayOf("Computer Science", "Chinese"),
-            "bio" to "I go to Rice University!"
+        val user = hashMapOf(
+            "name" to name,
+            "email" to email,
+            "subjects" to subjects,
+            "role" to role
         )
-        users.add(anna);
-
-        val janet = hashMapOf(
-            "name" to "Janet Lu",
-            "email" to "janetlu@gmail.com",
-            "subjects" to arrayOf("Computer Science", "Electrical Engineering"),
-            "bio" to "I go to Rice University!"
-        )
-        users.add(janet);
+        users.add(user);
     }
 
-    private fun getCompSciUsers() {
+    fun getUsersOfSubject(subject: String): List<String> {
+        // Get users with matching subject.
         val users = db.collection("users");
+        val query = users.whereArrayContains("subjects", subject);
+        val snapshot = query.get().result;
+        val documentList = snapshot?.documents;
 
-        users.whereArrayContains("subjects", "Computer Science");
+        // Add users' names into a list and return.
+        val userNames = mutableListOf<String>();
+        if (documentList != null) {
+            for (document in documentList) {
+                userNames.add(document.get("name") as String);
+            }
+        }
+        return userNames;
+    }
+
+    fun getUsersOfRole(role: String): Query {
+        val users = db.collection("users");
+        return users.whereEqualTo("role", role);
     }
 }
