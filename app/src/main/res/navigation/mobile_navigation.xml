@@ -9,12 +9,20 @@
         android:id="@+id/matchTab"
         android:name="com.example.femmehacks.match.MatchFragment"
         android:label="@string/match"
-        tools:layout="@layout/fragment_match" />
+        tools:layout="@layout/fragment_match" >
+        <action
+            android:id="@+id/action_matchTab_to_profileTab"
+            app:destination="@id/profileTab" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileTab"
         android:name="com.example.femmehacks.profile.ProfileFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileTab_to_matchTab"
+            app:destination="@id/matchTab" />
+    </fragment>
 
 </navigation>
