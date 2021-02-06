@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.femmehacks.R
 import com.example.femmehacks.databinding.FragmentProfileBinding
 
-class ProfileFragment: Fragment() {
+class giProfileFragment: Fragment() {
     lateinit var binding : FragmentProfileBinding
 
     override fun onCreateView(
