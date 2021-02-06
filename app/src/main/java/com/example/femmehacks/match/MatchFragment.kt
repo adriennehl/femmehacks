@@ -18,7 +18,7 @@ class MatchFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        DataBindingUtil.inflate<ViewDataBinding>(
+        binding = DataBindingUtil.inflate<FragmentMatchBinding>(
             inflater,
             R.layout.fragment_match, container, false
         )
