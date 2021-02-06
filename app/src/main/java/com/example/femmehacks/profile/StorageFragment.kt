@@ -77,6 +77,8 @@ class StorageFragment(val db: FirebaseFirestore) {
                     document.get(ROLE) as String, document.get(SUBJECTS) as List<String>);
                 matchingUsers.add(user);
             }
-        }
+        }.addOnFailureListener { exception ->
+            Log.d("TAG", "Error getting documents: ", exception)
+        };
     }
 }
