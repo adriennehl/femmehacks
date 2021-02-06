@@ -8,6 +8,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainer
+import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -37,26 +39,14 @@ class MainActivity : AppCompatActivity() {
         navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
-                    setCurrentFragment(matchFrag, "Match")
+                    navController.navigate(R.id.matchTab)
                 }
                 R.id.navigation_profile -> {
-                    setCurrentFragment(profileFrag, "Profile")
+                    navController.navigate(R.id.profileTab)
                 }
             }
             true
         }
-    }
-
-    /**
-     * Updates the current fragment
-     */
-    private fun setCurrentFragment(fragment: Fragment, tabTitle: String) {
-        /* Replace fragment */
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.nav_host_fragment, fragment)
-            commit()
-        }
-        Log.d("ME", "inside set current fragment")
     }
 
 }
