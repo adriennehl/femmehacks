@@ -6,4 +6,8 @@
     <string name="profile">Profile</string>
     <string name="match">Match</string>
 
+    <string name="subjects">Subjects</string>
+    <string name="subject">Subject</string>
+    <string name="bio">Bio</string>
+    <string name="save">Save</string>
 </resources>
