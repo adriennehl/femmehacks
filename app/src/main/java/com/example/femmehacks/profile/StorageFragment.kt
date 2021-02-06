@@ -41,7 +41,18 @@ const val ROLE = "role";
 const val SUBJECTS = "subjects";
 var matchingUsers = mutableListOf<User>();
 
-class User(var name: String, email: String, role: String, subjects: List<String>);
+class User constructor(name_input: String, email_input: String, role_input: String,
+                       subject_input: List<String>) {
+    var name = name_input;
+    var email = email_input;
+    var role = role_input;
+    var subjects = subject_input;
+
+    override fun toString(): String {
+        val string = "Name: $name\nEmail: $email\nRole: $role\nSubjects: $subjects\n";
+        return string;
+    }
+}
 
 class StorageFragment(val db: FirebaseFirestore) {
 
@@ -66,7 +77,7 @@ class StorageFragment(val db: FirebaseFirestore) {
     /*
     Adds the users with the matching role and any matching subjects to the list matchingUsers.
      */
-    fun getMatchingUsers(subjects: List<String>, role: String) {
+    fun getMatchingUsers(role: String, subjects: List<String>) {
         val users = db.collection(USERS);
         //  Query the users with the matching role and any of the matching subjects.
         val query = users.whereEqualTo(ROLE, role).whereArrayContainsAny(SUBJECTS, subjects);
