@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.femmehacks.R
 import com.example.femmehacks.databinding.FragmentProfileBinding
 
-class ProfileFragment: Fragment(), AdapterView.OnItemSelectedListener {
+class ProfileFragment: Fragment() {
     lateinit var binding : FragmentProfileBinding
 
     override fun onCreateView(

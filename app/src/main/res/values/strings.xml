@@ -19,4 +19,5 @@
         <item>Mentee</item>
         <item>Study Buddy</item>
     </string-array>
+    <string name="filter">Filter</string>
 </resources>

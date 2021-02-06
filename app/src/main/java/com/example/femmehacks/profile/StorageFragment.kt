@@ -53,19 +53,21 @@ class StorageFragment(val db: FirebaseFirestore) {
 
     fun getUsersOfSubject(subject: String): List<String> {
         // Get users with matching subject.
+        Log.d("TAG", subject)
         val users = db.collection("users");
         val query = users.whereArrayContains("subjects", subject);
-        val snapshot = query.get().result;
-        val documentList = snapshot?.documents;
-
-        // Add users' names into a list and return.
-        val userNames = mutableListOf<String>();
-        if (documentList != null) {
-            for (document in documentList) {
+        val snapshot = query.get().addOnSuccessListener { documents ->
+            // Add users' names into a list and return.
+            val userNames = mutableListOf<String>();
+            for (document in documents) {
                 userNames.add(document.get("name") as String);
             }
+            Log.d("Tag", userNames.toString())
         }
-        return userNames;
+            .addOnFailureListener { exception ->
+                Log.d("TAG", "Error getting documents: ", exception)
+            };
+        return emptyList()
     }
 
     fun getUsersOfRole(role: String): Query {
