@@ -1,8 +1,7 @@
 # Default ignored files
 /shelf/
-#/workspace.xml
-#/compiler.xml
-#/jarRepositories.xml
-#/gradle.xml
-#/vcs.xml
-$CACHE_FILE$
+/workspace.xml
+/compiler.xml
+/gradle.xml
+/vcs.xml
+/jarRepositories.xml
