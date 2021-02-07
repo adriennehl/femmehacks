@@ -4,6 +4,7 @@ package com.example.femmehacks.profile
 
 import android.util.Log
 import androidx.annotation.WorkerThread
+import com.example.femmehacks.match.MatchFragment
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Timestamp
@@ -77,17 +78,19 @@ class StorageFragment(val db: FirebaseFirestore) {
     /*
     Adds the users with the matching role and any matching subjects to the list matchingUsers.
      */
-    fun getMatchingUsers(role: String, subjects: List<String>) {
+    fun getMatchingUsers(role: String, subjects: List<String>, fragment: MatchFragment) {
         val users = db.collection(USERS);
         //  Query the users with the matching role and any of the matching subjects.
         val query = users.whereEqualTo(ROLE, role).whereArrayContainsAny(SUBJECTS, subjects);
         query.get().addOnSuccessListener { documents ->
+            matchingUsers.clear()
             // Add each matching user to the list of matching users as a User object.
             for (document in documents) {
                 val user = User(document.get(NAME) as String, document.get(EMAIL) as String,
                     document.get(ROLE) as String, document.get(SUBJECTS) as List<String>);
                 matchingUsers.add(user);
             }
+            fragment.setUsersList(matchingUsers)
         }.addOnFailureListener { exception ->
             Log.d("TAG", "Error getting documents: ", exception)
         };

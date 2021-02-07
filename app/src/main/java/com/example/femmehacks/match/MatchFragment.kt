@@ -14,6 +14,7 @@ import com.example.femmehacks.MainActivity
 import com.example.femmehacks.R
 import com.example.femmehacks.databinding.FragmentMatchBinding
 import com.example.femmehacks.profile.StorageFragment
+import com.example.femmehacks.profile.User
 import com.example.femmehacks.profile.matchingUsers
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -21,6 +22,7 @@ import io.grpc.Context
 
 class MatchFragment: Fragment() {
     lateinit var binding : FragmentMatchBinding
+    var userList = mutableListOf<User>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +36,23 @@ class MatchFragment: Fragment() {
 
         binding.filterButton.setOnClickListener { filter() }
         setHasOptionsMenu(true)
+
+        /* Update recycler view contents */
+        val adapter = UserItemAdapter(userList)
+        binding.matchList.adapter = adapter
+//        Log.d("Log", binding.matchList.adapter!!.itemCount.toString())
+//        (binding.matchList.adapter as UserItemAdapter).notifyDataSetChanged()
         return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.filter_action, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    fun setUsersList(user: MutableList<User>){
+        val adapter = UserItemAdapter(user)
+        binding.matchList.adapter = adapter
     }
 
     fun filter() {
@@ -56,10 +69,7 @@ class MatchFragment: Fragment() {
             role = checkedButton.text.toString()
         }
         val storage = StorageFragment(FirebaseFirestore.getInstance())
-        Log.d("Tag", "hello")
-        storage.getMatchingUsers(role, subjects);
-        Log.d("Tag", "hello2")
-        Log.d("Tag", matchingUsers.toString());
+        storage.getMatchingUsers(role, subjects, this);
     }
 
     /**
