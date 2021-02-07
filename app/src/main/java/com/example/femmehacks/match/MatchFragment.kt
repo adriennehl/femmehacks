@@ -20,6 +20,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import io.grpc.Context
 
+import com.firebase.ui.auth.AuthUI
+//import com.google.firebase.quickstart.auth.R
+
+
 class MatchFragment: Fragment() {
     lateinit var binding : FragmentMatchBinding
     var userList = mutableListOf<User>()
@@ -33,6 +37,9 @@ class MatchFragment: Fragment() {
             inflater,
             R.layout.fragment_match, container, false
         )
+        // Choose authentication providers
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build())
 
         binding.filterButton.setOnClickListener { filter() }
         setHasOptionsMenu(true)
