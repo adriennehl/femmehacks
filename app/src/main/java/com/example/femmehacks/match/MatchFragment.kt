@@ -14,6 +14,7 @@ import com.example.femmehacks.MainActivity
 import com.example.femmehacks.R
 import com.example.femmehacks.databinding.FragmentMatchBinding
 import com.example.femmehacks.profile.StorageFragment
+import com.example.femmehacks.profile.matchingUsers
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import io.grpc.Context
@@ -56,8 +57,9 @@ class MatchFragment: Fragment() {
         }
         val storage = StorageFragment(FirebaseFirestore.getInstance())
         Log.d("Tag", "hello")
-        storage.getUsersOfSubject(subjects[0])
+        storage.getMatchingUsers(role, subjects);
         Log.d("Tag", "hello2")
+        Log.d("Tag", matchingUsers.toString());
     }
 
     /**
@@ -80,5 +82,4 @@ class MatchFragment: Fragment() {
             binding.filterLayout.visibility = View.GONE
         }
     }
-
 }
