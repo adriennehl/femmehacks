@@ -61,10 +61,8 @@ class StorageFragment(val db: FirebaseFirestore) {
         val db = Firebase.firestore
     }
 
-    /*
-    Adds a user with the specified fields to the Firestore.
-     */
-    fun addUser(name: String, email: String, subjects: Array<String>, role: String) {
+
+    fun addUser(name: String, email: String, subjects: List<String>, role: String) {
         val users = db.collection(USERS);
         val user = hashMapOf(
             NAME to name,

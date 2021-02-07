@@ -39,7 +39,6 @@ android {
         dataBinding true
     }
 }
-
 dependencies {
     def fragment_version = "1.2.5"
 
