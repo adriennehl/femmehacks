@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".MainActivity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
 
-    <TextView android:id="@+id/card_front" android:layout_width="300dp"
-        android:layout_height="300dp" android:text="Front card" android:textAlignment="center"
+    <TextView android:id="@+id/cardFront" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:text="Front card" android:textAlignment="center"
         android:gravity="center"
+        android:alpha="0"
         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/card_back"
-        android:layout_width="294dp"
-        android:layout_height="299dp"
+        android:id="@+id/cardBack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:alpha="0"
         android:gravity="center"
         android:text="Back card"
@@ -26,15 +26,61 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/flip_btn"
-        android:layout_width="273dp"
-        android:layout_height="281dp"
-        android:layout_marginBottom="224dp"
-        android:text="Flip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="69dp" />
+        <Button
+            android:id="@+id/flip_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:alpha="0.5"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"
+        android:text="name"
+        android:textSize="25sp"
+        android:id="@+id/nameText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameText"
+        android:textColor="@color/black"
+        android:text="email"
+        android:textSize="25sp"
+        android:id="@+id/emailText" />
+    <TextView
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailText"
+        android:id="@+id/subjectText"
+        android:text="subject"
+        android:textSize="25sp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subjectText"
+        android:id="@+id/roleText"
+        android:text="role"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
 

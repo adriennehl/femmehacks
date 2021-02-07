@@ -17,11 +17,6 @@ import com.example.femmehacks.profile.StorageFragment
 import com.example.femmehacks.profile.User
 import com.example.femmehacks.profile.matchingUsers
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import io.grpc.Context
-
-import com.firebase.ui.auth.AuthUI
-//import com.google.firebase.quickstart.auth.R
 
 
 class MatchFragment: Fragment() {
@@ -37,9 +32,6 @@ class MatchFragment: Fragment() {
             inflater,
             R.layout.fragment_match, container, false
         )
-        // Choose authentication providers
-        val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build())
 
         binding.filterButton.setOnClickListener { filter() }
         setHasOptionsMenu(true)
@@ -77,6 +69,7 @@ class MatchFragment: Fragment() {
         }
         val storage = StorageFragment(FirebaseFirestore.getInstance())
         storage.getMatchingUsers(role, subjects, this);
+        filterPressed()
     }
 
     /**
